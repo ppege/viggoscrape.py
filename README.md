@@ -49,13 +49,13 @@ print(assignment_data)
 Our output would look something like this:
 ```json
 {
-    'subject': ['English', 'Math'],
-    'time': ['31. aug 12:00', '2. sep 08:55'],
-    'description': ['Read pages 30 and 31', 'Finish A, B and C'],
-    'author': ['28. aug 11:25 by John Doe', '31. aug 15:30 by Peter Anker'],
-    'files': ['None', 'example.com/algebra.pdf'],
-    'file_names': ['None', 'Intro to algebra'],
-    'url': ['https:\\example-subdomain.viggo.dk/Basic/HomewordAndAssignment/Details/1234/#modal', 'https:\\example-subdomain.viggo.dk/Basic/HomewordAndAssignment/Details/1235/#modal']
+    "subject": ["English", "Math"],
+    "time": ["31. aug 12:00", "2. sep 08:55"],
+    "description": ["Read pages 30 and 31", "Finish A, B and C"],
+    "author": ["28. aug 11:25 by John Doe", "31. aug 15:30 by Peter Anker"],
+    "files": ["None", "example.com/algebra.pdf"],
+    "file_names": ["None", "Intro to algebra"],
+    "url": ["https://example-subdomain.viggo.dk/Basic/HomewordAndAssignment/Details/1234/#modal", "https://example-subdomain.viggo.dk/Basic/HomewordAndAssignment/Details/1235/#modal"]
 }
 ```
 
