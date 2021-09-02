@@ -1,6 +1,5 @@
 """Scans for assignments on viggo using requests and the POST method."""
 import re
-import configparser
 from requests import Session
 
 def get_links(subdomain, info):
@@ -106,7 +105,7 @@ def get_assignments(subdomain, info):
     links = get_links(subdomain, login_info)
     for i in enumerate(links):
         i = i[0]
-        home_page = scrape_page(links[i], login_info)
+        home_page = scrape_page(subdomain, links[i], login_info)
         assignment_data, description = extract_data(links[i], home_page, assignment_data)
         link_in_post, double_link = get_links_in_post(description)
         description = remove_hex(description, double_link, link_in_post)
