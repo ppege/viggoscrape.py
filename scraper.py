@@ -87,7 +87,7 @@ def scrape_page(subdomain, link, login_info):
         home_page = s.get(f"https://{subdomain}.viggo.dk/Basic/HomeworkAndAssignment/Details/{link}/#modal")
     return home_page
 
-def lektiescan(subdomain, info):
+def get_assignments(subdomain, info):
     """Function that scans assignments then returns each element in a dictionary."""
     login_info = {
         "user_name": info['USERNAME'],
