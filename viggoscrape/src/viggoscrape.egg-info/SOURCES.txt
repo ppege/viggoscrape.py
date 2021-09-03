@@ -1,0 +1,8 @@
+LICENSE
+README.md
+setup.py
+viggoscrape/src/viggoscrape.py
+viggoscrape/src/viggoscrape.egg-info/PKG-INFO
+viggoscrape/src/viggoscrape.egg-info/SOURCES.txt
+viggoscrape/src/viggoscrape.egg-info/dependency_links.txt
+viggoscrape/src/viggoscrape.egg-info/top_level.txt

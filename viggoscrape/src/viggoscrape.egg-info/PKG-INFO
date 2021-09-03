@@ -1,3 +1,19 @@
+Metadata-Version: 2.1
+Name: viggoscrape
+Version: 1.0.5
+Summary: Python library for scraping viggo assignments
+Home-page: UNKNOWN
+Author: Nangu
+Author-email: nanguthenangu@gmail.com
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+License-File: LICENSE
+
 # Viggoscrape
 
 Python library for scraping *[Viggo](http://viggo.dk/)* assignments.
@@ -60,3 +76,4 @@ Our output would look something like this:
 ```
 
 Now, you can do anything you want with this newfound data, like save it to a json file, create an embed for your [discord bot](https://github.com/nangurepo/fessor), or any other purpose. Just use the same index on all lists and the data should match.
+
