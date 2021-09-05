@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="viggoscrape",                     # This is the name of the package
-    version="1.0.5",                        # The initial release version
+    version="1.1.0",                        # The initial release version
     author="Nangu",          
     author_email="nanguthenangu@gmail.com",
     description="Python library for scraping viggo assignments",
@@ -19,6 +19,6 @@ setuptools.setup(
     ],                                      # Information to filter the project on PyPi website
     python_requires='>=3.6',                # Minimum version requirement of the package
     py_modules=["viggoscrape"],             # Name of the python package
-    package_dir={'':'viggoscrape/src/'},     # Directory of the source code of the package
+    package_dir={'':'viggoscrape/src'},     # Directory of the source code of the package
     install_requires=[]                     # Install other dependencies if any
 )

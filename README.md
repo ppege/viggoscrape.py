@@ -22,13 +22,9 @@ And not like this:
 
 #### Login info
 
-The login info uses 3 pieces of information:
+The login info uses 2 pieces of information:
 -  Username
 -  Password
--  Fingerprint
-
-The first two items are obvious.
-But to find your fingerprint, you'll need to look through the html of your login page's source code, and look for a `ViggoLog=x` value.
 
 #### Usage example
 
@@ -39,8 +35,7 @@ from viggoscrape import get_assignments
 subdomain = "subdomain-example"
 login_info = {
     "USERNAME": "example@example.com",
-    "PASSWORD": "Password1234",
-    "FINGERPRINT": "ViggoLog=f8f567-19t7-5hg7-d68n-and85mba2"
+    "PASSWORD": "Password1234"
 }
 assignment_data = get_assignments(subdomain, login_info)
 print(assignment_data)

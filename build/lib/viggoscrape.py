@@ -5,7 +5,7 @@ from requests import Session
 def get_links(subdomain, info):
     """Gets all assignment links from viggo's assignments page."""
     with Session() as s: # pylint: disable=invalid-name
-        login_data = {"UserName": info["user_name"], "Password": info["password"], "fingerprint": info["fingerprint"]}
+        login_data = {"UserName": info["user_name"], "Password": info["password"]}
         s.post(f"https://{subdomain}.viggo.dk/Basic/Account/Login", login_data)
         home_page = s.get("https://nr-aadal.viggo.dk/Basic/HomeworkAndAssignment")
         home_page = str(home_page.content).replace('\\n', '\n').replace('\\r', '\r').replace('\\xc3\\xb8', 'ø').replace('\\xc3\\xa5', 'å').replace('&#xF8;', 'ø').replace('&#xE5;', 'å').replace('\\xc3\\xa6', 'æ').replace('\\xc3\\x98', 'Ø')
@@ -81,7 +81,7 @@ def format_links(link_in_post, description):
 def scrape_page(subdomain, link, login_info):
     """Scrapes the contents of a viggo assignment page."""
     with Session() as s: # pylint: disable=invalid-name
-        login_data = {"UserName": login_info["user_name"], "Password": login_info["password"], "fingerprint": login_info["fingerprint"]}
+        login_data = {"UserName": login_info["user_name"], "Password": login_info["password"]}
         s.post(f"https://{subdomain}.viggo.dk/Basic/Account/Login", login_data)
         home_page = s.get(f"https://{subdomain}.viggo.dk/Basic/HomeworkAndAssignment/Details/{link}/#modal")
     return home_page
@@ -90,8 +90,7 @@ def get_assignments(subdomain, info):
     """Function that scans assignments then returns each element in a dictionary."""
     login_info = {
         "user_name": info['USERNAME'],
-        "password": info['PASSWORD'],
-        "fingerprint": info['FINGERPRINT']
+        "password": info['PASSWORD']
     }
     assignment_data = {
         "subject": [],
