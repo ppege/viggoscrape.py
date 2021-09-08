@@ -1,6 +1,7 @@
 """Scans for assignments on viggo using requests and the POST method."""
 import re
 from requests import Session
+import json
 
 def get_links(subdomain, info):
     """Gets all assignment links from viggo's assignments page."""
@@ -111,4 +112,4 @@ def get_assignments(subdomain, info):
         description = format_links(link_in_post, description)
         assignment_data['description'].append(description)
 
-    return assignment_data
+    return json.dumps(assignment_data, indent = 4)
