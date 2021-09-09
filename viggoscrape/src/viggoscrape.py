@@ -18,7 +18,22 @@ def get_links(subdomain, info):
 def extract_data(link, home_page, assignment_data):
     """Extracts data from viggo using regex."""
     assignment_data["url"].append("https://nr-aadal.viggo.dk/Basic/HomeworkAndAssignment/Details/" + link + "/#modal")
-    home_page = str(home_page.content).replace('\\n', '\n').replace('\\r', '\r').replace('\\xc3\\xb8', 'ø').replace('\\xc3\\xa5', 'å').replace('&#xF8;', 'ø').replace('&#xE5;', 'å').replace('\\xc3\\xa6', 'æ').replace('\\xc3\\x98', 'Ø').replace('&nbsp;', '')
+    home_page = str(home_page.content)
+    replacements = {
+        '\\n': '\n',
+        '\\r': '\r',
+        '\\xc3\\xb8': 'ø',
+        '\\xc3\\xa5': 'å',
+        '&#xF8;': 'ø',
+        '&#xE5;': 'å',
+        '\\xc3\\xa6': 'æ',
+        '\\xc3\\x98': 'Ø',
+        '&nbsp;': '',
+        '<em>': '',
+        '</em>': ''
+    }
+    for string, replacement in replacements.items():
+        home_page = home_page.replace(string, replacement)
     new_subject = re.findall("(?<=class=\"ajaxModal\">).*?(?=</a>)", home_page)
     assignment_data["subject"].append(new_subject[0].replace('&#xE6;', 'æ'))
     new_time = re.findall("(?<=<dd>).*?(?= <)", home_page)
@@ -68,16 +83,13 @@ def remove_hex(description, double_link, link_in_post):
 
 def format_links(link_in_post, description):
     """Formats links to labelled hyperlinks if possible."""
-    finished_description = ''
     if link_in_post != '':
-        target = re.findall("(?<=\" rel=\"noopener noreferrer\" target=\"_blank\">).*?(?=</a>)", description)
+        target = re.findall("(?<=rel=\"noopener noreferrer\" target=\"_blank\">).*?(?=</a>)", description)
         href = re.findall("(?<=<a href=\").*?(?=\")", description)
         for j in enumerate(href):
             j = j[0]
             if target[j] != href[j]:
-                finished_description = description.replace(target[j], '')
-                finished_description = finished_description.replace(href[j], f"[{target[j]}]({href[j]})")
-        return finished_description
+                description = description.replace(target[j], '').replace(href[j], f"[{target[j]}]({href[j]})")
     return description
 def scrape_page(subdomain, link, login_info):
     """Scrapes the contents of a viggo assignment page."""
