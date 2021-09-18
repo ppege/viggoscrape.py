@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="viggoscrape",                     # This is the name of the package
-    version="1.1.2",                        # The initial release version
+    version="1.1.3",                        # The initial release version
     author="Nangu",          
     author_email="nanguthenangu@gmail.com",
     description="Python library for scraping viggo assignments",
