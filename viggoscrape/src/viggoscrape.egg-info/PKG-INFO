@@ -1,6 +1,6 @@
 Metadata-Version: 2.1
 Name: viggoscrape
-Version: 1.1.3
+Version: 1.2.0
 Summary: Python library for scraping viggo assignments
 Home-page: UNKNOWN
 Author: Nangu
@@ -16,17 +16,20 @@ License-File: LICENSE
 
 # Viggoscrape
 
-Python library for scraping *[Viggo](http://viggo.dk/)* assignments.
+Python library for scraping *[Viggo](http://viggo.dk/)* assignments by interacting with the [Viggoscrape API](https://viggoscrape.xyz/).
 
->This library is designed for **danish** users, and time will be adjusted to the **CET** timezone.
+>The API is designed for **danish** users, and time will be adjusted to the **CET** timezone.
 
 ## Quickstart
 
 ### Information syntax
 
-To use Viggoscrape, you need to provide it with login info and a subdomain.
+To use Viggoscrape, you need to provide it with login info in the form of a dictionary.
 
-#### Subdomain
+The login info uses 3 pieces of information:
+-  Subdomain
+-  Username
+-  Password
 
 For your subdomain, specify only the subdomain, like this:
 
@@ -36,25 +39,24 @@ And not like this:
 
 `subdomain-example.viggo.dk`
 
-#### Login info
+### Usage example
 
-The login info uses 2 pieces of information:
--  Username
--  Password
-
-#### Usage example
-
-Let's try this out! We'll import the library, give it the required info and print the resulting dictionary.
+Let's try this out! We'll import the library, give it the required info and print the result, catching any error that may happen.
 
 ```python
 from viggoscrape import get_assignments
-subdomain = "subdomain-example"
-login_info = {
-    "USERNAME": "example@example.com",
-    "PASSWORD": "Password1234"
-}
-assignment_data = get_assignments(subdomain, login_info)
-print(assignment_data)
+
+try:
+    data = get_assignments(
+        {
+            "subdomain": "example-subdomain",
+            "username": "johndoe@gmail.com",
+            "password": "Password1234"
+        }
+    )
+    print(data)
+except Exception as e:
+    print(e)
 ```
 
 Our output would look something like this:
@@ -66,8 +68,16 @@ Our output would look something like this:
     "author": ["28. aug 11:25 by John Doe", "31. aug 15:30 by Peter Anker"],
     "files": ["None", "example.com/algebra.pdf"],
     "file_names": ["None", "Intro to algebra"],
-    "url": ["https://example-subdomain.viggo.dk/Basic/HomewordAndAssignment/Details/1234/#modal", "https://example-subdomain.viggo.dk/Basic/HomewordAndAssignment/Details/1235/#modal"]
+    "url": ["https://example-subdomain.viggo.dk/Basic/HomeworkAndAssignment/Details/1234/#modal", "https://example-subdomain.viggo.dk/Basic/HomeworkAndAssignment/Details/1235/#modal"]
 }
+```
+Or if something went wrong and the provided subdomain is invalid:
+```python
+"Invalid subdomain"
+```
+Or if the password or username is misspelt:
+```python
+"Invalid credentials"
 ```
 
 Now, you can do anything you want with this newfound data, like save it to a json file, create an embed for your [discord bot](https://github.com/nangurepo/fessor), or any other purpose. Just use the same index on all lists and the data should match.
