@@ -1,4 +1,4 @@
-# Viggoscrape
+# Viggoscrape.py
 
 Python library for scraping *[Viggo](http://viggo.dk/)* assignments by interacting with the [Viggoscrape API](https://viggoscrape.xyz/).
 
@@ -8,7 +8,7 @@ Python library for scraping *[Viggo](http://viggo.dk/)* assignments by interacti
 
 ### Information syntax
 
-To use Viggoscrape, you need to provide it with login info in the form of a dictionary.
+To use Viggoscrape.py, you need to provide it with login info in the form of a dictionary.
 
 The login info uses 3 pieces of information:
 -  Subdomain
