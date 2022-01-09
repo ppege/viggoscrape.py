@@ -11,7 +11,7 @@ class Viggoscrape():
     ):
         """Construct"""
         self.version = "v2"
-        self.date = None
+        self.date = "None"
         self.subdomain = subdomain
         self.username = username
         self.password = password
