@@ -1,67 +1,72 @@
 # Viggoscrape.py
 
-Python library for scraping *[Viggo](http://viggo.dk/)* assignments by interacting with the [Viggoscrape API](https://viggoscrape.xyz/).
+Python library for scraping *[Viggo](http://viggo.dk/)* assignments by interacting with the [Viggoscrape API](http://viggoscrape.xyz/).
 
 >The API is designed for **danish** users, and time will be adjusted to the **CET** timezone.
 
 ## Quickstart
 
-### Information syntax
+### Syntax
 
-To use Viggoscrape.py, you need to provide it with login info in the form of a dictionary.
-
-The login info uses 3 pieces of information:
--  Subdomain
--  Username
--  Password
-
-For your subdomain, specify only the subdomain, like this:
-
-`subdomain-example`
-
-And not like this:
-
-`subdomain-example.viggo.dk`
+Viggoscrape.py uses the following syntax:
+1. Provide subdomain, username and password on class initialization
+2. Provide optional parameters: date, grouping mode and API version after initialization
+3. Retrieve a list of assignments using the `get_assignments` method, or retrieve a
+dictionary of assignment attributes using the `get_attributes` method.
 
 ### Usage example
 
-Let's try this out! We'll import the library, give it the required info and print the result, catching any error that may happen.
+Most of the time you'll want to do something like this:
+
+#### 
 
 ```python
-from viggoscrape import get_assignments
+from viggoscrape import Viggoscrape
 
-try:
-    data = get_assignments(
-        {
-            "subdomain": "example-subdomain",
-            "username": "johndoe@gmail.com",
-            "password": "Password1234"
-        }
-    )
-    print(data)
-except Exception as e:
-    print(e)
+v = Viggoscrape(
+    subdomain="example-subdomain",
+    username="viggouser@gmail.com",
+    password="password123456"
+) # initialization
+v.date = "2021-03-14" # get assignments within 2 weeks of this date
+
+print(v.get_assignments()) # get a list of dictionaries representing assignments
+
 ```
 
-Our output would look something like this:
+The output should look something like this:
+```json
+[
+    {
+        "author": "14. mar 2021 11:09 by Teacher McTeacher",
+        "date": "Monday 16. Mar",
+        "description": "Read this and that blablabla, here are some links: https://github.com/nangurepo/ https://viggoscrape.xyz/",
+        "subject": "History",
+        "time": "10:45 - 11:30",
+        "url": "https://subdomain-example.viggo.dk/Basic/HomeworkAndAssignment/Details/1234/#modal"
+    },
+    {
+        "author": "17. mar 2021 18:09 by Other Teacher",
+        "date": "Tuesday 20. Mar",
+        "description": "Read page 170-200 of 'To kill a mockingbird'",
+        "subject": "English",
+        "time": "12:00 - 12:45",
+        "url": "https://subdomain-example.viggo.dk/Basic/HomeworkAndAssignment/Details/5678/#modal"
+    }
+]
+```
+Swap out `v.get_assignments()` for `v.get_attributes()` and it'll look like this:
+
 ```json
 {
-    "subject": ["English", "Math"],
-    "time": ["31. aug 12:00", "2. sep 08:55"],
-    "description": ["Read pages 30 and 31", "Finish A, B and C"],
-    "author": ["28. aug 11:25 by John Doe", "31. aug 15:30 by Peter Anker"],
-    "files": ["None", "example.com/algebra.pdf"],
-    "file_names": ["None", "Intro to algebra"],
-    "url": ["https://example-subdomain.viggo.dk/Basic/HomeworkAndAssignment/Details/1234/#modal", "https://example-subdomain.viggo.dk/Basic/HomeworkAndAssignment/Details/1235/#modal"]
+    "subject": ["History", "English"],
+    "date": ["Monday 16. Mar", "Tuesday 20. Mar"],
+    "description": ["Read this and that blablabla, here are some links: https://github.com/nangurepo/ https://viggoscrape.xyz/", "Read page 170-200 of 'To kill a mockingbird'"],
+    "author": ["14. mar 2021 11:09 by Teacher McTeacher", "17. mar 2021 18:09 by Other Teacher"],
+    "url": ["https://subdomain-example.viggo.dk/Basic/HomeworkAndAssignment/Details/1234/#modal", "https://subdomain-example.viggo.dk/Basic/HomeworkAndAssignment/Details/5678/#modal"]
 }
 ```
-Or if something went wrong and the provided subdomain is invalid:
-```python
-"Invalid subdomain"
-```
-Or if the password or username is misspelt:
-```python
-"Invalid credentials"
-```
+This can be used for other purposes.
 
-Now, you can do anything you want with this newfound data, like save it to a json file, create an embed for your [discord bot](https://github.com/nangurepo/fessor), or any other purpose. Just use the same index on all lists and the data should match.
+Do note that if you, for some reason, need to use v1 of the API, data will always be returned as a dictionary of attributes, with the addition of file names and urls. Version 1 of the API uses a more thorough scan, scraping each individual assignment page, carrying a huge sacrifice of efficiency.
+
