@@ -1,6 +1,6 @@
 Metadata-Version: 2.1
 Name: viggoscrape
-Version: 2.0.1
+Version: 2.0.2
 Summary: Python library for scraping viggo assignments
 Home-page: UNKNOWN
 Author: Nangu
@@ -16,7 +16,7 @@ License-File: LICENSE
 
 # Viggoscrape.py
 
-Python library for scraping *[Viggo](http://viggo.dk/)* assignments by interacting with the [Viggoscrape API](http://viggoscrape.xyz/).
+Python library for scraping *[Viggo](http://viggo.dk/)* assignments by interacting with the [Viggoscrape API](https://viggoscrape.xyz/).
 
 >The API is designed for **danish** users, and time will be adjusted to the **CET** timezone.
 
