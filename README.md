@@ -1,6 +1,6 @@
 # Viggoscrape.py
 
-Python library for scraping *[Viggo](http://viggo.dk/)* assignments by interacting with the [Viggoscrape API](https://viggoscrape.nangurepo.com/).
+Python library for scraping [Viggo](http://viggo.dk/) assignments by interacting with the [Viggoscrape API](https://viggoscrape.nangurepo.com/).
 
 >The API is designed for **danish** users, and time will be adjusted to the **CET** timezone.
 
@@ -10,7 +10,7 @@ Python library for scraping *[Viggo](http://viggo.dk/)* assignments by interacti
 
 Viggoscrape.py uses the following syntax:
 1. Provide subdomain, username and password on class initialization
-2. Provide optional parameters: date, grouping mode and API version after initialization
+2. Provide optional parameters: `date` and `version` after initialization
 3. Retrieve a list of assignments using the `get_assignments` method, or retrieve a
 dictionary of assignment attributes using the `get_attributes` method.
 
@@ -40,7 +40,7 @@ The output should look something like this:
     {
         "author": "14. mar 2021 11:09 by Teacher McTeacher",
         "date": "Monday 16. Mar",
-        "description": "Read this and that blablabla, here are some links: https://github.com/nangurepo/ https://viggoscrape.xyz/",
+        "description": "Read this and that blablabla, here are some links: https://github.com/nangurepo/ https://viggoscrape.nangurepo.com/",
         "subject": "History",
         "time": "10:45 - 11:30",
         "url": "https://subdomain-example.viggo.dk/Basic/HomeworkAndAssignment/Details/1234/#modal"
@@ -69,4 +69,3 @@ Swap out `v.get_assignments()` for `v.get_attributes()` and it'll look like this
 This can be used for other purposes.
 
 Do note that if you, for some reason, need to use v1 of the API, data will always be returned as a dictionary of attributes, with the addition of file names and urls. Version 1 of the API uses a more thorough scan, scraping each individual assignment page, carrying a huge sacrifice of efficiency.
-
