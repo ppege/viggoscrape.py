@@ -32,7 +32,7 @@ class Viggoscrape():
     def _create_url(self, grouping) -> str:
         return ''.join(
             [
-                'https://viggoscrape.xyz/api/',
+                'https://api.nangurepo.com/',
                 self.version,
                 '/scrape?date=',
                 self.date,
