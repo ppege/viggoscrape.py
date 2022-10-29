@@ -1,6 +1,6 @@
 # Viggoscrape.py
 
-Python library for scraping [Viggo](http://viggo.dk/) assignments by interacting with the [Viggoscrape API](https://viggoscrape.nangurepo.com/).
+Python library for scraping *[Viggo](http://viggo.dk/)* assignments by interacting with the [Viggoscrape API](https://api.nangurepo.com/v2/scrape).
 
 >The API is designed for **danish** users, and time will be adjusted to the **CET** timezone.
 
